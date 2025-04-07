@@ -172,6 +172,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Bob edits
 .DS_Store
 *.pyc
 __pycache__/
