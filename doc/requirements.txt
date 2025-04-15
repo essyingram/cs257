@@ -1,1 +1,15 @@
 Teammates: Raquel Emeka, Rui Shen, Essy Ingram
+OUR DATA: Our datasets contain comprehensive information about characters, potions and spells featured in the Harry Potter franchise. A few categories of data included for HP characters are name, gender, occupation, wand type, and even patronus. The potion data includes names, qualitative traits, effects and ingredients for each potion. The spell data also includes helpful characteristics like incantation name, commonly used names and type (e.g., hex, jinx, charm, etc.). The link provided below leads to the character dataset (Characters.csv) published by Gulsah Demiryurek on kaggle.com. On the right sidebar, you may navigate to the potions or spells datasets (Potions.csv, Spells.csv).
+https://www.kaggle.com/datasets/gulsahdemiryurek/harry-potter-dataset
+
+STORY 1: A Harry Potter super-fan can view the known qualitative characteristics of polyjuice potion to draw a franchise-accurate comic strip.
+
+IMPLEMENTATION 1:
+
+STORY 2: An avid reader and current middle schooler has just started book 4 of the series. He can get a list of every character belonging to House Slytherin so he can seethe at them for being members of the most evil house.
+
+IMPLEMENTATION 2:
+
+STORY 3: A parent worries that the Harry Potter books and movies are too violent for their child. He searches for Potions and Spells whose information includes the keywords “death” or “kill.” This helps him discern if the franchise is age appropriate for his child.
+
+IMPLEMENTATION 3:
