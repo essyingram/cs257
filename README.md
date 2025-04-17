@@ -4,7 +4,6 @@
 ### gitintro/hello.py
 Alice & Bob: an introduction to version control systems, the git version control system, and git operations. Essy Ingram, Rui Shen & Raquel Emeka, 7 April 2025.
 
-
 ### doc/requirements.txt, wireframes/wireframes.pdf, wireframes/readme.txt
 Description of web app datasets, user stories and implementation, wireframes of Harry Potter Wiki, Wireframes readme.txt. Essy Ingram, Rui Shen & Raquel Emeka, 15 April 2025.
 
