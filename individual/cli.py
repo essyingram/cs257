@@ -1,6 +1,7 @@
 '''
 cli.py
 Essy Ingram, 17 April 2025
+Adapted from sample code provided by Professor Ondich
 
 NAME: cli.py - command-line interface exercise
 SYNOPSIS: python3 cli.py hogwartshouse
