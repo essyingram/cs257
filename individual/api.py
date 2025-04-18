@@ -2,6 +2,9 @@
     api.py
     Essy Ingram, 18 April 2025
 
-    practice designing an API endpoint by refactoring cli.py
+    user uses browser to access dataset via an API endpoint in this
+    api.py
 '''
+import sys
+import argparse
 import flask
