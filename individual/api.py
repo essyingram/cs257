@@ -20,7 +20,7 @@ app = flask.Flask(__name__)
 def hello():
     return 'Hello, visitor. Welcome to Harry Potter Wiki!'
 
-@app.route('/alumni-from/<hogwarts-house>')
+@app.route('/alumni-from/<house>')
 def get_alumni_from(house):
     ''' Returns the list of Harry Potter characters that match the user-specified Hogwarts house'''
     alumni = []
