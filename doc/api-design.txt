@@ -1,0 +1,15 @@
+CS 257 Software Design
+
+Essy, Raquel, Rui, 23 April 2025
+
+
+Jeff's example format (please don't delete yet):
+
+RESPONSE: a JSON list of dictionaries, each of which represents one
+book, sorted by publication date. Each book dictionary will have the
+following fields.
+
+   title -- (string) the title of the book
+   author -- (string) the full name(s) of the author(s),
+             semicolon-delimited if there is more than one author
+   publication_year -- (int) the year the book was published
