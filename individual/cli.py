@@ -23,7 +23,7 @@ def main():
     houses = {'gryffindor', 'hufflepuff', 'ravenclaw', 'slytherin'}
     
     if house in houses:
-        with open('../data/characters1.csv') as f:
+        with open('../data/draft-characters.csv') as f:
             reader = csv.reader(f, delimiter=';')
             for character_row in reader:
                 actual_house = character_row[4].lower()
