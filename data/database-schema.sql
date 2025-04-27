@@ -29,6 +29,6 @@ CREATE TABLE potions (
     known_ingredients text,
     effect text,
     qualitative_traits text,
-    difficulty text,
+    difficulty text
 );
 
