@@ -26,7 +26,7 @@
 import sys
 import csv
 
-def main(input_file_name1,input_file_name2,input_file_name3):
+def main(input_file_name1, input_file_name2, input_file_name3):
     # Collect the data and assign ids to characters, spells and potions
     characters = {}
     spells = {}
@@ -125,7 +125,7 @@ def main(input_file_name1,input_file_name2,input_file_name3):
             writer.writerow(row)
 
 if len(sys.argv) != 4:
-    print(f'Usage: {sys.argv[0]} character_csv_file spell_csv_file potion_csv_file', file=sys.stderr)
+    print(f'Usage: {sys.argv[0]} characters_csv_file spells_csv_file potions_csv_file', file=sys.stderr)
     exit()
 
-main(sys.argv[1])
+main(sys.argv[1], sys.argv[2], sys.argv[3])
