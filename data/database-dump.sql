@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: authors; Type: TABLE; Schema: public; Owner: ingrame
+-- Name: authors; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.authors (
@@ -33,10 +33,8 @@ CREATE TABLE public.authors (
 );
 
 
-ALTER TABLE public.authors OWNER TO ingrame;
-
 --
--- Name: books; Type: TABLE; Schema: public; Owner: ingrame
+-- Name: books; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.books (
@@ -46,10 +44,8 @@ CREATE TABLE public.books (
 );
 
 
-ALTER TABLE public.books OWNER TO ingrame;
-
 --
--- Name: books_authors; Type: TABLE; Schema: public; Owner: ingrame
+-- Name: books_authors; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.books_authors (
@@ -58,10 +54,8 @@ CREATE TABLE public.books_authors (
 );
 
 
-ALTER TABLE public.books_authors OWNER TO ingrame;
-
 --
--- Name: characters; Type: TABLE; Schema: public; Owner: ingrame
+-- Name: characters; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.characters (
@@ -81,10 +75,8 @@ CREATE TABLE public.characters (
 );
 
 
-ALTER TABLE public.characters OWNER TO ingrame;
-
 --
--- Name: potions; Type: TABLE; Schema: public; Owner: ingrame
+-- Name: potions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.potions (
@@ -97,10 +89,8 @@ CREATE TABLE public.potions (
 );
 
 
-ALTER TABLE public.potions OWNER TO ingrame;
-
 --
--- Name: spells; Type: TABLE; Schema: public; Owner: ingrame
+-- Name: spells; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.spells (
@@ -113,10 +103,8 @@ CREATE TABLE public.spells (
 );
 
 
-ALTER TABLE public.spells OWNER TO ingrame;
-
 --
--- Data for Name: authors; Type: TABLE DATA; Schema: public; Owner: ingrame
+-- Data for Name: authors; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.authors (id, surname, given_name, birth_year, death_year) FROM stdin;
@@ -141,7 +129,7 @@ COPY public.authors (id, surname, given_name, birth_year, death_year) FROM stdin
 
 
 --
--- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: ingrame
+-- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.books (id, title, publication_year) FROM stdin;
@@ -180,15 +168,15 @@ COPY public.books (id, title, publication_year) FROM stdin;
 
 
 --
--- Data for Name: books_authors; Type: TABLE DATA; Schema: public; Owner: ingrame
+-- Data for Name: books_authors; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.books_authors (book_id, author_id) FROM stdin;
 0	0
 1	1
 2	2
-0	3
-3	4
+3	0
+4	3
 4	4
 5	5
 6	6
@@ -196,31 +184,31 @@ COPY public.books_authors (book_id, author_id) FROM stdin;
 8	8
 9	9
 10	10
-5	11
-11	12
-12	13
-1	14
-12	15
-9	16
-6	17
-8	18
-10	19
-6	20
-11	21
-2	22
-8	23
-13	24
-14	25
-15	26
-0	27
-7	28
-14	29
-16	30
+11	5
+12	11
+13	12
+14	1
+15	12
+16	9
+17	6
+18	8
+19	10
+20	6
+21	11
+22	2
+23	8
+24	13
+25	14
+26	15
+27	0
+28	7
+29	14
+30	16
 \.
 
 
 --
--- Data for Name: characters; Type: TABLE DATA; Schema: public; Owner: ingrame
+-- Data for Name: characters; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.characters (id, surname, given_name, species, gender, hair_color, eye_color, house, occupation, blood_status, wand, patronus, skills) FROM stdin;
@@ -368,7 +356,7 @@ COPY public.characters (id, surname, given_name, species, gender, hair_color, ey
 
 
 --
--- Data for Name: potions; Type: TABLE DATA; Schema: public; Owner: ingrame
+-- Data for Name: potions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.potions (id, name, known_ingredients, effect, qualitative_traits, difficulty) FROM stdin;
@@ -448,7 +436,7 @@ COPY public.potions (id, name, known_ingredients, effect, qualitative_traits, di
 
 
 --
--- Data for Name: spells; Type: TABLE DATA; Schema: public; Owner: ingrame
+-- Data for Name: spells; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.spells (id, informal_name, incantation, type, effect, light) FROM stdin;
