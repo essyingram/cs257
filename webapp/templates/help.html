@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Harry Potter Wiki reference</title>
+</head>
+<body>
+    <pre>Harry Potter Wiki API: endpoint reference
+
+REQUEST: /
+RESPONSE:
+    A greeting from this API to you.
+
+REQUEST: /help
+RESPONSE:
+    This message.
+
+REQUEST: /characters[?search_text={SEARCH_TEXT}&amp;house={HOUSE}&amp;gender={GENDER}&amp;limit={LIMIT}]
+RESPONSE:
+    Returns the list of Harry Potter characters matching the specified GET parameters,
+    sorted alphabetically by last name (and by first name if a surname is repeated).
+    If a GET parameter is absent, then any character is treated as though
+    it meets the corresponding constraint.
+    Each character is represented by a dictionary with keys "given_name"
+    and "surname". 
+
+        search_text, text: return only characters whose first or last name contains search_text, case-insensitively
+
+        house, text: return only characters from the specified house, case-insensitively 
+            (i.e., Gryffindor, huffLepuFF, ravenclaw, and SLYTHERIN are all accepted strings)
+
+        gender, text: return only characters of that gender, case-insensitively
+            (e.g., male, Female)
+
+        limit, int: return a limited number of characters from the list of matches.
+            The default limit is set to 145 to include all characters.
+
+    For example:
+
+        /characters?search_text=potter&house=Gryffindor
+
+    will return a list of all characters belonging to Gryffindor whose name contains the string "potter".
+
+REQUEST: /spells[?search_text={SEARCH_TEXT}&amp;type={TYPE}&amp;limit={LIMIT}]
+RESPONSE:
+    Returns the list of Harry Potter spells matching the specified GET parameters,
+    sorted alphabetically by incantation (and by informal name if an incantation is repeated).
+    If a GET parameter is absent, then any character is treated as though
+    it meets the corresponding constraint.
+    Each spell is represented by a dictionary with keys "informal_name",
+    "incantation", "type" and "effect".
+
+        search_text, text: return only spells whose incantation or informal name contains search_text, case-insensitively
+
+        type, text: return only spells of the specified spell type, case-insensitively 
+            (e.g. hex, jinx, curse, etc.)
+
+        limit, int: return a limited number of spells from the list of matches.
+            The default limit is set to 400 to include all spells.
+
+    For example:
+
+        /spells?search_text=aloha
+
+    will return a list of all spells whose informal name or incantation contains the string "aloha".
+
+REQUEST: /potions[?search_text={SEARCH_TEXT}&amp;limit={LIMIT}]
+RESPONSE:
+        Returns the list of Harry Potter potions matching the specified GET parameters,
+        sorted alphabetically by name (and by effect if a name is repeated).
+        If a GET parameter is absent, then any character is treated as though
+        it meets the corresponding constraint.
+        Each potion is represented by a dictionary with keys "name",
+        "effect" and "known_ingredients".
+    
+            search_text, text: return only potions whose name or effect contains search_text, case-insensitively
+    
+            limit, int: return a limited number of potions from the list of matches.
+                The default limit is set to 400 to include all potions.
+    
+        For example:
+    
+            /spells?search_text=polyjuice
+    
+        will return a list of all potions whose name or effect contains the string "polyjuice".
+    </pre>
+</body>
+</html>
+

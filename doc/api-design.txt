@@ -1,78 +1,93 @@
 api-design.txt
 CS 257 Software Design
-Essy, Raquel, Rui, 23 April 2025
+Essy Ingram 23 April 2025, 10 May 2025
+
+API Endpoint Design
 
 REQUEST: /characters
 
 GET parameters
-   house (Optional, default: '') -- return only characters from
-   the specified house, case-insensitively
+    search_text (Optional, default: '') -- return only characters
+        whose first or last names contain search_text
 
-   number (Optional, default: 150) -- return only the amount of
-   characters from the list of characters
-    
-   gender (Optional, default: '') -- return only characters of 
-   that gender
+    house (Optional, default: '') -- return only characters from
+        the specified house, case-insensitively
+        
+    gender (Optional, default: '') -- return only characters of 
+        that gender
 
-   name (Optional, default: '') -- return only characters whose name
-    matches the specified string
+    limit (Optional, default: 140) -- return a limited 
+        number of characters from the list of characters
 
-RESPONSE: a JSON list of strings, each of which represents one
-character name, sorted alphabetically by first name.
-
-EXAMPLE:
-    /characters?house=gryffindor&gender=male&name=potter
-
-       "Harry James Potter", "James Potter", "James Sirius Potter"
-
-REQUEST: /characters
-
-GET parameters
-   house (Optional, default: '') -- return only characters from
-   the specified house, case-insensitively
-
-   number (Optional, default: 150) -- return only the amount of
-   characters from the list of characters
-    
-   gender (Optional, default: '') -- return only characters of 
-   that gender
-
-   name (Optional, default: '') -- return only characters whose name
-    matches the specified string
-
-RESPONSE: a JSON list of strings, each of which represents one
-character name, sorted alphabetically by first name.
+RESPONSE: a JSON list of dictionaries, each of which represents one
+character name, sorted alphabetically by last name (and sorted alphabetically
+by first name when last names are equal). Each dicitonary in this list will 
+have the following fields.
+    surname -- (TEXT) the character's last or family name
+    given_name -- (TEXT) the character's first or given name or names
+    gender -- (TEXT) the character's gender
+    house -- (TEXT) the character's affiliated Hogwarts house
 
 EXAMPLE:
-    /characters?house=gryffindor&gender=male&name=potter
+/characters?house=gryffindor&gender=male&search_text=potter
 
-       "Harry James Potter", "James Potter", "James Sirius Potter"
+    [{"given_name":"Harry James","surname":"Potter"}, 
+     {"given_name":"James","surname":"Potter"}, 
+     {"given_name":"James Sirius","surname":"Potter"}]
+
+
+
 
 REQUEST: /spells
 
 GET parameters
-   name (Optional, default: '') -- returns spells associated with input string
-   (input string can either be common name or proper incantation name)
+    search_text (Optional, default: '') -- returns spells associated with input string
+        (input string can either be common name or proper incantation name)
 
-   type (Optional, default: '') -- return spells of the specified type
+    type (Optional, default: '') -- return spells of the specified type
+
+    limit (Optional, default: '400') -- limit output of the specified number of spells
 
 RESPONSE: a JSON list of dictionaries, each of which represents one
 spell, sorted alphabetically by incantation. Each dictionary in this
 list will have the following fields.
-
     name -- (TEXT) commonly known name of spell
     incantation -- (TEXT) actual words said to produce spell
     type -- (TEXT) type of spell (e.g., hex, jinx, charm, etc.)
     effect -- (TEXT) effect of spell 
 
 EXAMPLES:
-    /spells?name=accio
+/spells?search_text=accio
 
-       [{"name":"summoning charm","incantation":"accio", "type":"charm","effect":"Summons an object"}]
+    [{"name":"summoning charm","incantation":"accio", "type":"charm","effect":"Summons an object"}]
     
-    /spells?type=hex
+/spells?type=hex
 
-       [{"name":"hex that grows antlers on the head","incantation":"anteoculatia", "type":"hex","effect":"grows antlers on head"},
-       {"name":"Stickfast Hex","incantation":"Colloshoo", "type":"hex","effect":"sticks shoes to floor"},
-       ... {the rest of the hex dictionaries!}]
+    [{"name":"hex that grows antlers on the head","incantation":"anteoculatia", "type":"hex","effect":"grows antlers on head"},
+    {"name":"Stickfast Hex","incantation":"Colloshoo", "type":"hex","effect":"sticks shoes to floor"},
+    ... {the rest of the hex dictionaries!}]
 
+
+
+
+REQUEST: /potions
+
+GET parameters
+    search_text (Optional, default: '') -- return only potions whose name or effect match 
+        the specified string, case-insensitively.
+
+    limit (Optional, default: '300') -- limit output of the specified number of potions
+
+RESPONSE: a JSON list of dictionaries, each of which represents one potion, 
+sorted alphabetically by name. Each potion dictionary will have the following fields:
+    name -- (TEXT) the name of the potion
+    effect -- (TEXT) effect of the potion
+    known_ingredients -- (TEXT) known potion known_ingredients
+    difficulty -- (TEXT) level of expertise required
+
+EXAMPLE:
+/potions?search_text=polyjuice
+
+    [{"effect": "Allows a human drinker to temporarily assume the form of another person",
+    "known_ingredients": "Lacewing flies (stewed 21 days), Leeches, Powdered bicorn horn, Knotgrass, Fluxweed (picked at full moon), Shredded Boomslang skin, A bit of the person one wants to turn into (typically hair)",
+    "name": "Polyjuice Potion"}]
