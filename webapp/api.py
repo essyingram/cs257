@@ -10,7 +10,7 @@
 import sys
 import argparse
 import flask
-
+import json
 import psycopg2
 import config
 
@@ -112,7 +112,7 @@ def get_characters():
         print(e, file=sys.stderr)
 
     connection.close()
-    return characters      # Returns a list of dictionaries representing characters
+    return json.dumps(characters)      # Returns a list of dictionaries representing characters
     
 @app.route('/spells')
 def get_spells():
@@ -175,7 +175,7 @@ def get_spells():
         print(e, file=sys.stderr)
 
     connection.close()
-    return spells      # Returns a list of dictionaries representing spells
+    return json.dumps(spells)      # Returns a list of dictionaries representing spells
     
 @app.route('/potions')
 def get_potions():
@@ -224,7 +224,7 @@ def get_potions():
         print(e, file=sys.stderr)
 
     connection.close()
-    return potions      # Returns a list of dictionaries representing potions
+    return json.dumps(potions)      # Returns a list of dictionaries representing potions
 
 
 if __name__ == '__main__':
