@@ -1,0 +1,64 @@
+/*
+    mockup1.css
+    Essy Ingram
+    17 May 2025
+
+    Advanced Search button adapted from https://www.w3schools.com/howto/howto_css_searchbar.asp.
+*/
+
+body {
+    margin: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.header {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #260c84;
+}
+
+p.greeting {
+    color: #0e1a51;
+    font-size: 14pt;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+p.small {
+    font-size: 12pt;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.searchbar {
+    overflow: hidden;
+    background-color: #b3bcea;
+    width: 450px;
+    margin-bottom: 20px;
+}
+
+.searchbar a {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 14px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.searchbar a:hover {
+    background-color: #8d94c5;
+    color: white;
+}
+
+.searchbar input[type=text] {
+    float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-left: 10px;
+    width: 270px;
+    font-size: 17px;
+}
