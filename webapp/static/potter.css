@@ -1,0 +1,17 @@
+/*
+    potter.css
+    Essy Ingram, 20 May 2025
+
+    Styles for the "Harry Potter" E2E web app
+*/
+
+body {
+    margin: 20px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: #b196eb;
+    color: #3c2274
+}
+
+#item_list li {
+    margin-bottom: 10px;
+}

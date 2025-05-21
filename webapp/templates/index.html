@@ -2,21 +2,20 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='template_sample.css') }}" />
-    <title>CS 257: Software Design</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='potter.css') }}" />
+    <script type="text/javascript" src="{{ url_for('static', filename='potter.js') }}"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <title>⭐️⭐️CS 257⭐️⭐️</title>
 </head>
 
 <body>
-    <h2>Template Sample Home Page</h2>
-    <p>This mini-site illustrates a few uses of Flask/Jinja2 templates.</p>
+    <h1>A Harry-Potter themed tiny web app✨</h1>
+    <h3>(with API :D)</h3>
 
-    <p>This page itself uses templates only to include its CSS file. Look at the
-    &lt;link&gt; tag in the header of templates/index.html to see how that is done.</p>
-
-    <p>Visit some other pages.</p>
-    <ul>
-        <li><a href="/shared-header/">implementing a shared page header</a></li>
-        <li><a href="/hello/Elmo">passing a variable into a page</a></li>
-    </ul>
+    <p><button id="characters_button">Characters</button></p>
+    <p><button id="spells_button">Spells</button></p>
+    <p><button id="potions_button">Potions</button></p>
+    
+        <ul id="item_list"></ul>
 </body>
 </html>
