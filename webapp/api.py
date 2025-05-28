@@ -2,8 +2,7 @@
 '''
     api.py
     Essy Ingram 20 April 2025, 10 May 2025
-
-    extend() list method found at https://www.geeksforgeeks.org/append-extend-python/
+    
     Adapted from Jeff Ondich's flask_sample.py, psycopg2-sample.py
 
     Tiny Flask API to support Harry Potter characters web application.
@@ -42,7 +41,9 @@ def get_characters():
         cursor = connection.cursor()
         cursor.execute(query)
         for row in cursor:
-            character = {'given_name':row[0], 'surname':row[1], 'house':row[2]}
+            character = {'given_name':row[0],
+                         'surname':row[1],
+                         'house':row[2]}
             characters.append(character)
         cursor.close()
         connection.close()
@@ -65,7 +66,10 @@ def get_spells():
         cursor = connection.cursor()
         cursor.execute(query)
         for row in cursor:
-            spells.append({'informal_name':row[0], 'incantation':row[1], 'type':row[2], 'effect':row[3]})
+            spells.append({'informal_name':row[0],
+                           'incantation':row[1],
+                           'type':row[2],
+                           'effect':row[3]})
         cursor.close()
         connection.close()
     except Exception as e:
@@ -87,7 +91,9 @@ def get_potions():
         cursor = connection.cursor()
         cursor.execute(query)
         for row in cursor:
-            potions.append({'name':row[0], 'effect':row[1], 'known_ingredients':row[2]})
+            potions.append({'name':row[0],
+                            'effect':row[1],
+                            'known_ingredients':row[2]})
 
         cursor.close()
         connection.close()
