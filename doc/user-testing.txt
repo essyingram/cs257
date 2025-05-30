@@ -1,0 +1,21 @@
+User Testing Observations
+30 May 2025
+
+Things the testers found easy
+- search for characters, spells and potions whose names contain the search string
+
+Things people had trouble with
+- given a list of items, everyone was unable to click 
+    to get the detailed specs about a specific item (because this feauture is buggy)
+
+Other positive comments or observations
+- Bare-bones look but easy to use.
+
+Other suggestions for improvement
+- The app is currently not functional. While the search can populate the correct 
+    information from my database, I'm still having trouble with allowing the user 
+    to click on a particular search item and view the Specs Card. 
+
+Other notes [if any didn't fit the other categories]
+- I'm working hard on debugging my code—I can upload a functional 'firstdraft' app
+    once the specs are working!
