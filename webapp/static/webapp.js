@@ -104,7 +104,7 @@ function onSearchButtonClicked(){
 }
 
 
-// use li IDs character, spell, or potion for API use
+// // use li IDs character, spell, or potion for API use
 // function loadSpecsFor(currentUrl, selectedItem){     // TODO
 //     var url = currentUrl
 // }

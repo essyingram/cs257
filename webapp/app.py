@@ -16,6 +16,11 @@ app.register_blueprint(api.api, url_prefix='/api')
 def home():
     return flask.render_template('index.html')
 
+@app.route('/help')
+def help():
+    return flask.render_template('help.html')
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('A Harry Potter characters web application')
     parser.add_argument('host', help='the host to run on')

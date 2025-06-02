@@ -33,13 +33,34 @@ p.greeting {
 }
 
 button {
-    margin-left: 2px;
+    margin: 8px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    border: 1px solid #260c84;
+    border-radius: 3px;
+    color: white;
+    background-color: #260c84;
+}
+
+input {
+    background-color: white;
+    border: 2px solid #d2ccee;
+    border-radius: 3px;
 }
 
 .search_form {
     margin-bottom: 8px;
     font-size: 10;
+    border: 2px solid #b9afe2;
+    padding-left: 8px;
+    border-radius: 5px;
+    background-color: #e4e1f2;
+    width: 500px;
+}
+
+.check {
+    font-size: 12pt;
+    color: #0e1a51;
 }
 
 .results {

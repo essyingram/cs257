@@ -1,0 +1,56 @@
+/*
+    help.css
+    Essy Ingram, 2 June 2025
+
+    Styles for the HP Wiki help page
+*/
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 20px;
+}
+
+p {
+    color:#260c84;
+}
+
+li {
+    color:#260c84;
+}
+
+.header {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #260c84;
+}
+
+p.greeting {
+    color: #0e1a51;
+    font-size: 14pt;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.endpoint {
+    margin-bottom: 9px;
+    width: 750px;
+    padding-top: 0px;
+    padding-left: 20px;
+    padding-bottom: 0px;
+    border: 2px solid #260c84;
+    border-radius: 5px;
+    background-color: #e4e1f2;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.indent {
+    padding-left: 40 px;
+}
+
+#message {
+    margin: 20px;
+}

@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='help.css') }}" />
+    <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <title>HP Wiki ⭐️ endpoints</title>
+</head>
+<body>
+    <h3 class="header">Harry Potter Wiki ⭐️</h3>
+    <p class="greeting">Endpoint Reference Help</p>
+    <div>
+        <div class="endpoint">
+            <p class="bold">REQUEST: /</p>
+            <p class="bold">RESPONSE:</p>
+            <p>A home page populated with a search bar 
+                and search filters.</p>
+        </div>
+        <div class="endpoint">
+            <p class="bold">REQUEST: /help</p>
+            <p class="bold">RESPONSE:</p>
+            <p>This message.</p>
+        </div>
+        <p id="message"> The following endpoints demonstrate <em>a few</em> of the  different 
+            combinations of search filters that may be applied to the search. </p>
+        <div class="endpoint">
+            <p class="bold">REQUEST: /api/characters-spells-potions/&ltsearch_text&gt</p>
+            <p class="bold">RESPONSE:</p>
+            <p>A list of dictionaries from the characters and potions tables 
+                that match the user's search string.</p>
+        </div>
+        <div class="endpoint">
+            <p class="bold">REQUEST: /api/spells-potions/&ltsearch_text&gt</p>
+            <p class="bold">RESPONSE:</p>
+            <p>A list of dictionaries from the spells and potions tables 
+                that match the user's search string.</p>
+        </div>
+        <div class="endpoint">
+            <p class="bold">REQUEST: /api/characters/&ltsearch_text&gt</p>
+            <p class="bold">RESPONSE:</p>
+            <p>A list of dictionaries from the characters table 
+                that match the user's search string.</p>
+        </div>
+        <p><strong>&#40Others are:</strong></p>
+        <ul>
+            <li class="bold">/api/characters-spells/&ltsearch_text&gt</li>
+            <li class="bold">/api/characters-potions/&ltsearch_text&gt</li>
+            <li class="bold">/api/spells/&ltsearch_text&gt</li>
+            <li class="bold">/api/potions/&ltsearch_text&gt&#41</li>
+        </ul>
+    </div>

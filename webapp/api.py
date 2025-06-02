@@ -84,7 +84,7 @@ def get_characters_spells_potions(search_text):
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument, ilike_argument))
+        cursor.execute(query, (ilike_argument,))
 
         for row in cursor:
             potion ={'name':row[0] if row[0] is not None else ''}
@@ -196,7 +196,7 @@ def get_characters_potions(search_text):
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument, ilike_argument))
+        cursor.execute(query, (ilike_argument,))
 
         for row in cursor:
             potion ={'name':row[0] if row[0] is not None else ''}
@@ -251,7 +251,7 @@ def get_spells_potions(search_text):
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument, ilike_argument))
+        cursor.execute(query, (ilike_argument,))
 
         for row in cursor:
             potion ={'name':row[0] if row[0] is not None else ''}
@@ -356,7 +356,7 @@ def get_potions(search_text):
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument, ilike_argument))
+        cursor.execute(query, (ilike_argument,))
 
         for row in cursor:
             potion ={'name':row[0] if row[0] is not None else ''}
