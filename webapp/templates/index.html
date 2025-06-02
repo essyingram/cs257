@@ -5,17 +5,21 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='webapp.css') }}" />
     <script type="text/javascript" src="{{ url_for('static', filename='webapp.js') }}"></script>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-    <title>CS257: It's like magic!</title>
+    <title>Harry Potter Wiki ⭐️</title>
 </head>
 
 <body>
-    <h1 class="header">Harry Potter Wiki ⚡️</h1>
-    <p class="greeting">Welcome to the interactive Harry Potter database—it's like magic!</p>
-
-    <p><button id="characters_button">Characters</button></p>
-    <p><button id="spells_button">Spells</button></p>
-    <p><button id="potions_button">Potions</button></p>
-    
-    <ul id="item_list"></ul>
+    <h1 class="header">Harry Potter Wiki ⭐️</h1>
+    <p class="greeting">Welcome to the interactive Harry Potter database. It's like magic!</p>
+    <div class="search_form">
+        <input id="search_text" type="text">
+        <button id="search_button">Search</button>
+        <label><input type="checkbox" id="include_characters" checked>Characters</label>
+        <label><input type="checkbox" id="include_spells" checked>Spells</label>
+        <label><input type="checkbox" id="include_potions" checked>Potions</label>
+    </div>
+    <div class="results">
+        <ul id="results-list"></ul>
+    </div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 '''
     api.py
     Essy Ingram 20 April 2025, 10 May 2025
-    
+
     Adapted from Jeff Ondich's flask_sample.py, psycopg2-sample.py
 
     Tiny Flask API to support Harry Potter characters web application.
@@ -22,81 +22,349 @@ def get_connection():
                             user=config.user,
                             password=config.password)
 
-@api.route('/characters/')
-def get_characters():
-    ''' Returns a list of all the characters in our database. See
-        get_author_by_id below for description of the author
-        resource representation.
-
-        By default, the list is presented in alphabetical order
-        by surname, then given_name.
+@api.route('/characters-spells-potions/<search_text>')
+def get_characters_spells_potions(search_text):
+    ''' Returns a list of characters, spells, and potions in our database that 
+        match the search string. By default, the results are presented in 
+        alphabetical order by name.
     '''
+    characters_spells_potions = []
 
-    query =  '''SELECT given_name, surname, house FROM characters
-                ORDER BY surname, given_name'''
+    # Searches names of characters, then spells, then potions
+    ilike_argument = '%' + search_text + '%'
+    query = ''' SELECT given_name, surname
+                FROM characters
+                WHERE surname ILIKE %s
+                OR given_name ILIKE %s 
+                ORDER BY surname, given_name '''
     
-    characters = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query)
+        cursor.execute(query, (ilike_argument, ilike_argument))
+
         for row in cursor:
-            character = {'given_name':row[0],
-                         'surname':row[1],
-                         'house':row[2]}
-            characters.append(character)
+            character = {'given_name':row[0] if row[0] is not None else '',
+                         'surname':row[1] if row[1] is not None else ''}
+            characters_spells_potions.append(character)
+            
         cursor.close()
         connection.close()
+
     except Exception as e:
         print(e, file=sys.stderr)
 
-    return json.dumps(characters)
-
-
-@api.route('/spells/')
-def get_spells():
-    ''' Returns a list of all the spells in the database 
-        ordered by incantation name.'''
-
-    query =  '''SELECT informal_name, incantation, type, effect FROM spells'''
+    query = ''' SELECT incantation, informal_name
+                FROM spells
+                WHERE incantation ILIKE %s
+                OR informal_name ILIKE %s 
+                ORDER BY incantation, informal_name '''
     
-    spells = []
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query)
+        cursor.execute(query, (ilike_argument, ilike_argument))
+
         for row in cursor:
-            spells.append({'informal_name':row[0],
-                           'incantation':row[1],
-                           'type':row[2],
-                           'effect':row[3]})
+            spell ={'incantation':row[0] if row[0] is not None else '',
+                    'informal_name':row[1] if row[1] is not None else ''}
+            characters_spells_potions.append(spell)
+            
         cursor.close()
         connection.close()
+
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    query = ''' SELECT name
+                FROM potions
+                WHERE name ILIKE %s
+                ORDER BY name '''
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (ilike_argument, ilike_argument))
+
+        for row in cursor:
+            potion ={'name':row[0] if row[0] is not None else ''}
+            characters_spells_potions.append(potion)
+            
+        cursor.close()
+        connection.close()
+
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    return json.dumps(characters_spells_potions)
+
+
+@api.route('/characters-spells/<search_text>')
+def get_characters_spells(search_text):
+    ''' Returns a list of characters and spells in our database that 
+        match the search string. By default, the results are presented in 
+        alphabetical order by name.
+    '''
+    characters_spells = []
+
+    # Searches names of characters, then spells
+    ilike_argument = '%' + search_text + '%'
+    query = ''' SELECT given_name, surname
+                FROM characters
+                WHERE surname ILIKE %s
+                OR given_name ILIKE %s 
+                ORDER BY surname, given_name '''
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (ilike_argument, ilike_argument))
+
+        for row in cursor:
+            character = {'given_name':row[0] if row[0] is not None else '',
+                         'surname':row[1] if row[1] is not None else ''}
+            characters_spells.append(character)
+            
+        cursor.close()
+        connection.close()
+
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    query = ''' SELECT incantation, informal_name
+                FROM spells
+                WHERE incantation ILIKE %s
+                OR informal_name ILIKE %s 
+                ORDER BY incantation, informal_name '''
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (ilike_argument, ilike_argument))
+
+        for row in cursor:
+            spell ={'incantation':row[0] if row[0] is not None else '',
+                    'informal_name':row[1] if row[1] is not None else ''}
+            characters_spells.append(spell)
+            
+        cursor.close()
+        connection.close()
+
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    return json.dumps(characters_spells)
+
+
+@api.route('/characters-potions/<search_text>')
+def get_characters_potions(search_text):
+    ''' Returns a list of characters and potions in our database that 
+        match the search string. By default, the results are presented in 
+        alphabetical order by name.
+    '''
+    characters_potions = []
+
+    # Searches names of characters, then potions
+    ilike_argument = '%' + search_text + '%'
+    query = ''' SELECT given_name, surname
+                FROM characters
+                WHERE surname ILIKE %s
+                OR given_name ILIKE %s 
+                ORDER BY surname, given_name '''
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (ilike_argument, ilike_argument))
+
+        for row in cursor:
+            character = {'given_name':row[0] if row[0] is not None else '',
+                         'surname':row[1] if row[1] is not None else ''}
+            characters_potions.append(character)
+            
+        cursor.close()
+        connection.close()
+
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    query = ''' SELECT name
+                FROM potions
+                WHERE name ILIKE %s
+                ORDER BY name '''
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (ilike_argument, ilike_argument))
+
+        for row in cursor:
+            potion ={'name':row[0] if row[0] is not None else ''}
+            characters_potions.append(potion)
+            
+        cursor.close()
+        connection.close()
+
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    return json.dumps(characters_potions)
+
+
+@api.route('/spells-potions/<search_text>')
+def get_spells_potions(search_text):
+    ''' Returns a list of spells and potions in our database that 
+        match the search string. By default, the results are presented in 
+        alphabetical order by name.
+    '''
+    spells_potions = []
+
+    # Searches names of spells, then potions
+    ilike_argument = '%' + search_text + '%'
+    query = ''' SELECT incantation, informal_name
+                FROM spells
+                WHERE incantation ILIKE %s
+                OR informal_name ILIKE %s 
+                ORDER BY incantation, informal_name '''
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (ilike_argument, ilike_argument))
+
+        for row in cursor:
+            spell ={'incantation':row[0] if row[0] is not None else '',
+                    'informal_name':row[1] if row[1] is not None else ''}
+            spells_potions.append(spell)
+            
+        cursor.close()
+        connection.close()
+
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    query = ''' SELECT name
+                FROM potions
+                WHERE name ILIKE %s
+                ORDER BY name '''
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (ilike_argument, ilike_argument))
+
+        for row in cursor:
+            potion ={'name':row[0] if row[0] is not None else ''}
+            spells_potions.append(potion)
+            
+        cursor.close()
+        connection.close()
+
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    return json.dumps(spells_potions)
+
+
+@api.route('/characters/<search_text>')
+def get_characters(search_text):
+    ''' Returns a list of characters in our database that 
+        match the search string. By default, the results are presented in 
+        alphabetical order by surname, then given_name.
+    '''
+    characters_potions = []
+
+    # Searches names of characters
+    ilike_argument = '%' + search_text + '%'
+    query = ''' SELECT given_name, surname
+                FROM characters
+                WHERE surname ILIKE %s
+                OR given_name ILIKE %s 
+                ORDER BY surname, given_name '''
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (ilike_argument, ilike_argument))
+
+        for row in cursor:
+            character = {'given_name':row[0] if row[0] is not None else '',
+                         'surname':row[1] if row[1] is not None else ''}
+            characters_potions.append(character)
+            
+        cursor.close()
+        connection.close()
+
+    except Exception as e:
+        print(e, file=sys.stderr)
+
+    return json.dumps(characters_potions)
+
+
+
+@api.route('/spells/<search_text>')
+def get_spells(search_text):
+    ''' Returns a list of spells in our database that 
+        match the search string. By default, the results are presented in 
+        alphabetical order.
+    '''
+    spells = []
+
+    # Searches names of spells
+    ilike_argument = '%' + search_text + '%'
+    query = ''' SELECT incantation, informal_name
+                FROM spells
+                WHERE incantation ILIKE %s
+                OR informal_name ILIKE %s 
+                ORDER BY incantation, informal_name '''
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, (ilike_argument, ilike_argument))
+
+        for row in cursor:
+            spell ={'incantation':row[0] if row[0] is not None else '',
+                    'informal_name':row[1] if row[1] is not None else ''}
+            spells.append(spell)
+            
+        cursor.close()
+        connection.close()
+
     except Exception as e:
         print(e, file=sys.stderr)
 
     return json.dumps(spells)
-    
-@api.route('/potions/')
-def get_potions():
-    ''' Returns a list of all the potions in the database that match GET parameters, 
-        ordered by potion name.'''
 
-    query = "SELECT name, effect, known_ingredients FROM potions"
-    
+
+
+@api.route('/potions/<search_text>')
+def get_potions(search_text):
+    ''' Returns a list of potions in our database that 
+        match the search string. By default, the results are presented in 
+        alphabetical order.
+    '''
     potions = []
+
+    # Searches names of potions
+    ilike_argument = '%' + search_text + '%'
+    query = ''' SELECT name
+                FROM potions
+                WHERE name ILIKE %s
+                ORDER BY name '''
     
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(query)
-        for row in cursor:
-            potions.append({'name':row[0],
-                            'effect':row[1],
-                            'known_ingredients':row[2]})
+        cursor.execute(query, (ilike_argument, ilike_argument))
 
+        for row in cursor:
+            potion ={'name':row[0] if row[0] is not None else ''}
+            potions.append(potion)
+            
         cursor.close()
         connection.close()
+
     except Exception as e:
         print(e, file=sys.stderr)
 
