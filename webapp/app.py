@@ -18,7 +18,7 @@ def home():
     return flask.render_template('index.html')
 
 # Help page for endpoint examples
-@app.route('/help')
+@app.route('/api/help')
 def help():
     return flask.render_template('help.html')
 
