@@ -1,5 +1,5 @@
 /*
-    potter.css
+    webapp.css
     Essy Ingram, 20 May 2025
 
     Styles for the "Harry Potter" E2E web app
@@ -16,10 +16,11 @@
 body {
     margin: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color:rgb(246, 246, 246);
 }
 
-.header {
-    font-size: 30px;
+.banner {
+    font-size: 30pt;
     margin-top: 10px;
     margin-bottom: 10px;
     color: #260c84;
@@ -32,65 +33,111 @@ p.greeting {
     margin-bottom: 10px;
 }
 
-button {
+.search-form {
+    margin-bottom: 8px;
+    font-size: 12pt;
+    padding-left: 6px;
+    border-radius: 5px;
+    background-color: #5e41c5;
+    width: 570px;
+}
+
+.search-form button {
     margin: 8px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 12pt;
-    border: 1px solid #260c84;
+    border: 1px solid #f0edfc;
     border-radius: 3px;
-    color: white;
-    background-color: #260c84;
+    padding: 2px;
+    color: #0e1a51;
+    background-color: #f0edfc;
 }
 
-input {
-    background-color: white;
-    border: 2px solid #d2ccee;
+.search-form button:hover {
+    background-color: #b5a3f3;
+    border: 1px solid #b5a3f3;
+}
+
+.search-form input[type=text]{
+    width: 220px;
+    background-color: #f0edfc;
+    border: 1px solid #f0edfc;
     border-radius: 3px;
-}
-
-.search_form {
-    margin-bottom: 8px;
-    font-size: 10;
-    border: 2px solid #b9afe2;
-    padding-left: 8px;
-    border-radius: 5px;
-    background-color: #e4e1f2;
-    width: 500px;
-}
-
-.check {
+    margin: 8px;
+    margin-right: -4px;
+    padding: 2px;
+    padding-left: 6px;
     font-size: 12pt;
     color: #0e1a51;
 }
 
-.results {
-    float: left;
+.check {
+    font-size: 12pt;
+    color: white;
 }
 
-.results ul {
+.results-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+#results-list {
+    width: 500px;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 500px;
-    background-color: #f1f1f1;
+    background-color: white;
 }
 
-.results ul li {
-    font-size: 19pt;
+#results-list li {
+    font-size: 20pt;
     border: 1px solid #8d94c5;
     margin-top: -1px;
-    background-color: #f6f6f6;
+    background-color: white;
     display: block;
     color: #0e1a51;
     padding: 16px 20px;
     text-decoration: none;
 }
 
-.results ul li:hover {
-    background-color: #b3bcea;
+#results-list li:hover {
+    background-color: #e4e1f2;
+    color: #260c84;
+}
+
+#results-list li.selected {
+    background-color: #5e41c5;
     color: white;
 }
 
-.results ul li.selected {
-    background-color: #b3bcea;
+.specs {
+    float: right;
+    width: 350px;
+    padding: 16px;
+    color: #260c84;
+}
+
+.specs h4 {
+    margin-top: -3px;
+    margin-bottom: -3px;
+    font-size: 24pt;
+}
+
+.specs p {
+    margin-top: 15px;
+    margin-bottom: -10px;
+    font-size: 20pt;
+}
+
+#specs-list {
+    list-style-type: none;
+    width: 350px;
+    padding-left: 8px;
+    padding-bottom: 6px;
+    font-size: 16pt;
+}
+
+#specs-list li {
+    margin-bottom: 10px;
 }

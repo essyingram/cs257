@@ -9,23 +9,28 @@
 </head>
 
 <body>
-    <h3 class="header">Harry Potter Wiki ⭐️</h3>
+    {% include 'header.html' %}
     <p class="greeting">Welcome to the interactive Harry Potter database. It's like magic!</p>
-    <div class="search_form">
-        <input id="search_text" type="text">
-        <button id="search_button">Search</button>
+    <div class="search-form">
+        <input id="search-text" type="text">
+        <button id="search-button">Search</button>
         <label class="check">
-            <input type="checkbox" id="include_characters" unchecked>Characters
+            <input type="checkbox" id="include-characters" unchecked>Characters
         </label>
         <label class="check">
-            <input type="checkbox" id="include_spells" unchecked>Spells
+            <input type="checkbox" id="include-spells" unchecked>Spells
         </label>
         <label class="check">
-            <input type="checkbox" id="include_potions" unchecked>Potions
+            <input type="checkbox" id="include-potions" unchecked>Potions
         </label>
     </div>
-    <div class="results">
+    <div class="results-container">
         <ul id="results-list"></ul>
+        <div class="specs">
+            <h4 id="specs-type"></h4>
+            <p id="specs-name"></p>
+            <ul id="specs-list"></ul>
+        </div>
     </div>
 </body>
 </html>

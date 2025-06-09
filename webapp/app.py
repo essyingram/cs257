@@ -12,17 +12,18 @@ import api
 app = flask.Flask(__name__, static_folder='static', template_folder='templates')
 app.register_blueprint(api.api, url_prefix='/api')
 
+# Route to home!
 @app.route('/') 
 def home():
     return flask.render_template('index.html')
 
+# Help page for endpoint examples
 @app.route('/help')
 def help():
     return flask.render_template('help.html')
 
-
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser('A Harry Potter characters web application')
+    parser = argparse.ArgumentParser('A Harry Potter web application')
     parser.add_argument('host', help='the host to run on')
     parser.add_argument('port', type=int, help='the port to listen on')
     arguments = parser.parse_args()

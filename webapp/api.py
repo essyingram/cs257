@@ -29,75 +29,11 @@ def get_characters_spells_potions(search_text):
         alphabetical order by name.
     '''
     characters_spells_potions = []
-
-    # Searches names of characters, then spells, then potions
-    ilike_argument = '%' + search_text + '%'
-    query = ''' SELECT given_name, surname
-                FROM characters
-                WHERE surname ILIKE %s
-                OR given_name ILIKE %s 
-                ORDER BY surname, given_name '''
-    
-    try:
-        connection = get_connection()
-        cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument, ilike_argument))
-
-        for row in cursor:
-            character = {'given_name':row[0] if row[0] is not None else '',
-                         'surname':row[1] if row[1] is not None else ''}
-            characters_spells_potions.append(character)
-            
-        cursor.close()
-        connection.close()
-
-    except Exception as e:
-        print(e, file=sys.stderr)
-
-    query = ''' SELECT incantation, informal_name
-                FROM spells
-                WHERE incantation ILIKE %s
-                OR informal_name ILIKE %s 
-                ORDER BY incantation, informal_name '''
-    
-    try:
-        connection = get_connection()
-        cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument, ilike_argument))
-
-        for row in cursor:
-            spell ={'incantation':row[0] if row[0] is not None else '',
-                    'informal_name':row[1] if row[1] is not None else ''}
-            characters_spells_potions.append(spell)
-            
-        cursor.close()
-        connection.close()
-
-    except Exception as e:
-        print(e, file=sys.stderr)
-
-    query = ''' SELECT name
-                FROM potions
-                WHERE name ILIKE %s
-                ORDER BY name '''
-    
-    try:
-        connection = get_connection()
-        cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument,))
-
-        for row in cursor:
-            potion ={'name':row[0] if row[0] is not None else ''}
-            characters_spells_potions.append(potion)
-            
-        cursor.close()
-        connection.close()
-
-    except Exception as e:
-        print(e, file=sys.stderr)
+    characters_spells_potions = characters_query_helper(search_text, characters_spells_potions)
+    characters_spells_potions = spells_query_helper(search_text, characters_spells_potions)
+    characters_spells_potions = potions_query_helper(search_text, characters_spells_potions)
 
     return json.dumps(characters_spells_potions)
-
 
 @api.route('/characters-spells/<search_text>')
 def get_characters_spells(search_text):
@@ -106,55 +42,10 @@ def get_characters_spells(search_text):
         alphabetical order by name.
     '''
     characters_spells = []
-
-    # Searches names of characters, then spells
-    ilike_argument = '%' + search_text + '%'
-    query = ''' SELECT given_name, surname
-                FROM characters
-                WHERE surname ILIKE %s
-                OR given_name ILIKE %s 
-                ORDER BY surname, given_name '''
+    characters_spells = characters_query_helper(search_text, characters_spells)
+    characters_spells = spells_query_helper(search_text, characters_spells)
     
-    try:
-        connection = get_connection()
-        cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument, ilike_argument))
-
-        for row in cursor:
-            character = {'given_name':row[0] if row[0] is not None else '',
-                         'surname':row[1] if row[1] is not None else ''}
-            characters_spells.append(character)
-            
-        cursor.close()
-        connection.close()
-
-    except Exception as e:
-        print(e, file=sys.stderr)
-
-    query = ''' SELECT incantation, informal_name
-                FROM spells
-                WHERE incantation ILIKE %s
-                OR informal_name ILIKE %s 
-                ORDER BY incantation, informal_name '''
-    
-    try:
-        connection = get_connection()
-        cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument, ilike_argument))
-
-        for row in cursor:
-            spell ={'incantation':row[0] if row[0] is not None else '',
-                    'informal_name':row[1] if row[1] is not None else ''}
-            characters_spells.append(spell)
-            
-        cursor.close()
-        connection.close()
-
-    except Exception as e:
-        print(e, file=sys.stderr)
-
     return json.dumps(characters_spells)
-
 
 @api.route('/characters-potions/<search_text>')
 def get_characters_potions(search_text):
@@ -163,53 +54,10 @@ def get_characters_potions(search_text):
         alphabetical order by name.
     '''
     characters_potions = []
-
-    # Searches names of characters, then potions
-    ilike_argument = '%' + search_text + '%'
-    query = ''' SELECT given_name, surname
-                FROM characters
-                WHERE surname ILIKE %s
-                OR given_name ILIKE %s 
-                ORDER BY surname, given_name '''
+    characters_potions = characters_query_helper(search_text, characters_potions)
+    characters_potions = potions_query_helper(search_text, characters_potions)
     
-    try:
-        connection = get_connection()
-        cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument, ilike_argument))
-
-        for row in cursor:
-            character = {'given_name':row[0] if row[0] is not None else '',
-                         'surname':row[1] if row[1] is not None else ''}
-            characters_potions.append(character)
-            
-        cursor.close()
-        connection.close()
-
-    except Exception as e:
-        print(e, file=sys.stderr)
-
-    query = ''' SELECT name
-                FROM potions
-                WHERE name ILIKE %s
-                ORDER BY name '''
-    
-    try:
-        connection = get_connection()
-        cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument,))
-
-        for row in cursor:
-            potion ={'name':row[0] if row[0] is not None else ''}
-            characters_potions.append(potion)
-            
-        cursor.close()
-        connection.close()
-
-    except Exception as e:
-        print(e, file=sys.stderr)
-
     return json.dumps(characters_potions)
-
 
 @api.route('/spells-potions/<search_text>')
 def get_spells_potions(search_text):
@@ -218,53 +66,10 @@ def get_spells_potions(search_text):
         alphabetical order by name.
     '''
     spells_potions = []
-
-    # Searches names of spells, then potions
-    ilike_argument = '%' + search_text + '%'
-    query = ''' SELECT incantation, informal_name
-                FROM spells
-                WHERE incantation ILIKE %s
-                OR informal_name ILIKE %s 
-                ORDER BY incantation, informal_name '''
-    
-    try:
-        connection = get_connection()
-        cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument, ilike_argument))
-
-        for row in cursor:
-            spell ={'incantation':row[0] if row[0] is not None else '',
-                    'informal_name':row[1] if row[1] is not None else ''}
-            spells_potions.append(spell)
-            
-        cursor.close()
-        connection.close()
-
-    except Exception as e:
-        print(e, file=sys.stderr)
-
-    query = ''' SELECT name
-                FROM potions
-                WHERE name ILIKE %s
-                ORDER BY name '''
-    
-    try:
-        connection = get_connection()
-        cursor = connection.cursor()
-        cursor.execute(query, (ilike_argument,))
-
-        for row in cursor:
-            potion ={'name':row[0] if row[0] is not None else ''}
-            spells_potions.append(potion)
-            
-        cursor.close()
-        connection.close()
-
-    except Exception as e:
-        print(e, file=sys.stderr)
+    spells_potions = spells_query_helper(search_text, spells_potions)
+    spells_potions = potions_query_helper(search_text, spells_potions)
 
     return json.dumps(spells_potions)
-
 
 @api.route('/characters/<search_text>')
 def get_characters(search_text):
@@ -272,11 +77,41 @@ def get_characters(search_text):
         match the search string. By default, the results are presented in 
         alphabetical order by surname, then given_name.
     '''
-    characters_potions = []
+    characters = []
+    characters = characters_query_helper(search_text, characters)
 
-    # Searches names of characters
+    return json.dumps(characters)
+
+@api.route('/spells/<search_text>')
+def get_spells(search_text):
+    ''' Returns a list of spells in our database that 
+        match the search string. By default, the results are presented in 
+        alphabetical order.
+    '''
+    spells = []
+    spells = spells_query_helper(search_text, spells)
+
+    return json.dumps(spells)
+
+@api.route('/potions/<search_text>')
+def get_potions(search_text):
+    ''' Returns a list of potions in our database that 
+        match the search string. By default, the results are presented in 
+        alphabetical order.
+    '''
+    potions = []
+    potions = potions_query_helper(search_text, potions)
+
+    return json.dumps(potions)
+
+def characters_query_helper(search_text, dictList):
+    ''' This helper function queries the database for a list 
+    of characters that match the user's search string. 
+    Appends matching dictionarys to the given list of dictionaries and returns it.
+    '''
+    # Searches names of characters for matches
     ilike_argument = '%' + search_text + '%'
-    query = ''' SELECT given_name, surname
+    query = ''' SELECT id, given_name, surname, species, gender, hair_color, eye_color, house, blood_status, wand, patronus, skills
                 FROM characters
                 WHERE surname ILIKE %s
                 OR given_name ILIKE %s 
@@ -288,9 +123,19 @@ def get_characters(search_text):
         cursor.execute(query, (ilike_argument, ilike_argument))
 
         for row in cursor:
-            character = {'given_name':row[0] if row[0] is not None else '',
-                         'surname':row[1] if row[1] is not None else ''}
-            characters_potions.append(character)
+            character = {'id': row[0],
+                         'given_name':row[1] if row[1] is not None else '',
+                         'surname':row[2] if row[2] is not None else '',
+                         'species':row[3] if row[3] is not None else '',
+                         'gender':row[4] if row[4] is not None else '',
+                         'hair_color':row[5] if row[5] is not None else '',
+                         'eye_color':row[6] if row[6] is not None else '',
+                         'house':row[7] if row[7] is not None else '',
+                         'blood_status':row[8] if row[8] is not None else '',
+                         'wand':row[9] if row[9] is not None else '',
+                         'patronus':row[10] if row[10] is not None else '',
+                         'skills':row[11] if row[11] is not None else ''}
+            dictList.append(character)
             
         cursor.close()
         connection.close()
@@ -298,21 +143,17 @@ def get_characters(search_text):
     except Exception as e:
         print(e, file=sys.stderr)
 
-    return json.dumps(characters_potions)
+    # returns updated dictionary list
+    return dictList
 
-
-
-@api.route('/spells/<search_text>')
-def get_spells(search_text):
-    ''' Returns a list of spells in our database that 
-        match the search string. By default, the results are presented in 
-        alphabetical order.
+def spells_query_helper(search_text, dictList):
+    ''' This helper function queries the database for a list 
+    of spells that match the user's search string. 
+    Appends matching dictionarys to the given list of dictionaries and returns it.
     '''
-    spells = []
-
-    # Searches names of spells
+    # Searches names of spells for matches
     ilike_argument = '%' + search_text + '%'
-    query = ''' SELECT incantation, informal_name
+    query = ''' SELECT id, incantation, informal_name, type, effect, light
                 FROM spells
                 WHERE incantation ILIKE %s
                 OR informal_name ILIKE %s 
@@ -324,9 +165,13 @@ def get_spells(search_text):
         cursor.execute(query, (ilike_argument, ilike_argument))
 
         for row in cursor:
-            spell ={'incantation':row[0] if row[0] is not None else '',
-                    'informal_name':row[1] if row[1] is not None else ''}
-            spells.append(spell)
+            spell ={'id':row[0],
+                    'incantation':row[1] if row[1] is not None else '',
+                    'informal_name':row[2] if row[2] is not None else '',
+                    'type':row[3] if row[3] is not None else '',
+                    'effect':row[4] if row[4] is not None else '',
+                    'light':row[5] if row[5] is not None else ''}
+            dictList.append(spell)
             
         cursor.close()
         connection.close()
@@ -334,21 +179,17 @@ def get_spells(search_text):
     except Exception as e:
         print(e, file=sys.stderr)
 
-    return json.dumps(spells)
+    # returns updated dictionary list
+    return dictList
 
-
-
-@api.route('/potions/<search_text>')
-def get_potions(search_text):
-    ''' Returns a list of potions in our database that 
-        match the search string. By default, the results are presented in 
-        alphabetical order.
+def potions_query_helper(search_text, dictList):
+    ''' This helper function queries the database for a list 
+    of potions that match the user's search string. 
+    Appends matching dictionaries to the given list of dictionaries and returns it.
     '''
-    potions = []
-
-    # Searches names of potions
+    # Searches names of potions for matches
     ilike_argument = '%' + search_text + '%'
-    query = ''' SELECT name
+    query = ''' SELECT id, name, effect, known_ingredients, difficulty
                 FROM potions
                 WHERE name ILIKE %s
                 ORDER BY name '''
@@ -359,8 +200,12 @@ def get_potions(search_text):
         cursor.execute(query, (ilike_argument,))
 
         for row in cursor:
-            potion ={'name':row[0] if row[0] is not None else ''}
-            potions.append(potion)
+            potion ={'id':row[0],
+                     'name':row[1] if row[1] is not None else '',
+                     'effect':row[2] if row[2] is not None else '',
+                     'known_ingredients':row[3] if row[3] is not None else '',
+                     'difficulty':row[4] if row[4] is not None else ''}
+            dictList.append(potion)
             
         cursor.close()
         connection.close()
@@ -368,4 +213,5 @@ def get_potions(search_text):
     except Exception as e:
         print(e, file=sys.stderr)
 
-    return json.dumps(potions)
+    # returns updated dictionary list
+    return dictList
